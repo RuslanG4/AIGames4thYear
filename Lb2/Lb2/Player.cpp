@@ -8,6 +8,7 @@ Player::Player()
 void Player::update(double dt)
 {
 	move(dt);
+	boundary();
 
 	handleKeyInput();
 
@@ -25,8 +26,9 @@ void Player::render(sf::RenderWindow& window)
 
 void Player::init()
 {
-	body.setRadius(50.f);
 	body.setFillColor(sf::Color::Green);
+	body.setPosition(400, 400);
+	body.setOrigin(40, 20);
 }
 
 void Player::handleKeyInput()
@@ -60,17 +62,17 @@ void Player::move(double dt)
 
 void Player::increaseSpeed()
 {
-	m_speed += 1;
+	m_speed += 15;
 }
 
 void Player::decreaseSpeed()
 {
-	m_speed -= 1;
+	m_speed -= 15;
 }
 
 void Player::increaseRotation()
 {
-	m_rotation += 1;
+	m_rotation += 3;
 	if (m_rotation == 360.0)
 	{
 		m_rotation = 0;
@@ -79,9 +81,29 @@ void Player::increaseRotation()
 
 void Player::decreaseRotation()
 {
-	m_rotation -= 1;
+	m_rotation -= 3;
 	if (m_rotation == 0.0)
 	{
 		m_rotation = 359.0;
+	}
+}
+
+void Player::boundary()
+{
+	if(body.getPosition().x > SCREEN_WIDTH + boundaryBuffer)
+	{
+		body.setPosition(sf::Vector2f(-boundaryBuffer, body.getPosition().y));
+	}
+	else if(body.getPosition().x<0 - boundaryBuffer)
+	{
+		body.setPosition(sf::Vector2f(SCREEN_WIDTH + boundaryBuffer, body.getPosition().y));
+	}
+	else if(body.getPosition().y<0 - boundaryBuffer)
+	{
+		body.setPosition(sf::Vector2f(body.getPosition().x, SCREEN_HEIGHT + boundaryBuffer));
+	}
+	else if(body.getPosition().y>SCREEN_HEIGHT + boundaryBuffer)
+	{
+		body.setPosition(sf::Vector2f(body.getPosition().x, -boundaryBuffer));
 	}
 }

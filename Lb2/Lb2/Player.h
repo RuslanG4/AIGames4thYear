@@ -3,6 +3,7 @@
 #include<functional>
 
 #include"Utility.h"
+#include "Constants.h"
 
 class Player
 {
@@ -20,8 +21,10 @@ public:
 	void decreaseSpeed();
 	void increaseRotation();
 	void decreaseRotation();
+
+	void boundary();
 private:
-	sf::CircleShape body;
+	sf::RectangleShape body{sf::Vector2f(80.f,40.f)};
 
 	double m_speed{ 0.0 };
 	double m_rotation{ 0.0 };
@@ -29,8 +32,10 @@ private:
 	sf::Vector2f newpos;
 	sf::Vector2f m_previousPosition;
 
-	const double MAX_REVERSE_SPEED = -200; //for movement
-	const double MAX_FORWARD_SPEED = 200;
+	const double MAX_REVERSE_SPEED = -300; //for movement
+	const double MAX_FORWARD_SPEED = 300;
+
+	const int boundaryBuffer = 50;
 
 };
 

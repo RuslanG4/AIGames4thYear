@@ -80,7 +80,11 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	player.update(t_deltaTime.asSeconds());
+	player.update(t_deltaTime.asMilliseconds());
+	for (auto enemy : enemies)
+	{
+		enemy->update(t_deltaTime.asMilliseconds());
+	}
 }
 
 /// <summary>
@@ -90,10 +94,20 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	player.render(m_window);
+	for(auto enemy : enemies)
+	{
+		enemy->render((m_window));
+	}
 	m_window.display();
 }
 
 void Game::initialise()
 {
+	if(!fighterShipTexture.loadFromFile(FIGHTER_SHIP))
+	{
+		std::cout << "Error loading fighter ship texture";
+	}
+
+	enemies.push_back(new PursueAI(fighterShipTexture, sf::Vector2f(600, 600)));
 
 }

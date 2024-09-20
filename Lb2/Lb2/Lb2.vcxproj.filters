@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\EnemyAI">
+      <UniqueIdentifier>{17707dfd-b31d-4eaa-9ea0-16ae0895b0f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{491d3fea-b65e-4b79-9275-1c82cd5e4bef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{0df826df-88f2-493f-b115-23dfdddec210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EnemyAI">
+      <UniqueIdentifier>{4d25f7bd-677a-426f-8f60-b0abfb32c735}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,10 +33,19 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utility.cpp">
+    <ClCompile Include="AI.cpp">
+      <Filter>Source Files\EnemyAI</Filter>
+    </ClCompile>
+    <ClCompile Include="PursueAI.cpp">
+      <Filter>Source Files\EnemyAI</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VisionCone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,10 +56,19 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utility.h">
+    <ClInclude Include="AI.h">
+      <Filter>Header Files\EnemyAI</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PursueAI.h">
+      <Filter>Header Files\EnemyAI</Filter>
+    </ClInclude>
+    <ClInclude Include="VisionCone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,3 +5,11 @@ namespace Utility
 	const double DEG_TO_RADIAN = PI / 180.f;
 };
 
+enum AITypes
+{
+	Wander,
+	Seek,
+	Arrive,
+	Pursue
+};
+

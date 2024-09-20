@@ -3,8 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include <iostream>
+#include<vector>
 #include"Constants.h"
 #include"Player.h"
+#include "AI.h"
+#include"PursueAI.h"
+#include <filesystem>
+
 
 class Game
 {
@@ -26,7 +31,10 @@ private:
 
 	sf::RenderWindow m_window; // main SFML window
 
+	std::vector<AI*> enemies;
 	Player player;
+
+	sf::Texture fighterShipTexture;
 };
 
 #endif // !GAME_HPP

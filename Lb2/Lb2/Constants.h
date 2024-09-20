@@ -1,7 +1,7 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 
-const char* const SPRITE_SHEET = "ASSETS\\IMAGES\\playerSpriteSheet.png";
+const char* const FIGHTER_SHIP = "fighter.png";
 
 const char* const FONT = "ASSETS\\FONTS\\edge.ttf";
 

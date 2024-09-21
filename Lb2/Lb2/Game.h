@@ -8,6 +8,7 @@
 #include"Player.h"
 #include "AI.h"
 #include"PursueAI.h"
+#include"WanderAI.h"
 #include <filesystem>
 
 

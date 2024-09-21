@@ -148,6 +148,7 @@
     <ClCompile Include="PursueAI.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="VisionCone.cpp" />
+    <ClCompile Include="WanderAI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="PursueAI.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="VisionCone.h" />
+    <ClInclude Include="WanderAI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

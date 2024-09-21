@@ -110,4 +110,6 @@ void Game::initialise()
 
 	enemies.push_back(new PursueAI(fighterShipTexture, sf::Vector2f(600, 600)));
 
+	enemies.push_back(new WanderAI(fighterShipTexture, sf::Vector2f(800, 600)));
+
 }

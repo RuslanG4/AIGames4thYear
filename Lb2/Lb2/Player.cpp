@@ -1,7 +1,8 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player(sf::Texture& texture)
 {
+	bodyTexture = texture;
 	init();
 }
 
@@ -22,13 +23,20 @@ void Player::update(double dt)
 void Player::render(sf::RenderWindow& window)
 {
 	window.draw(body);
+	window.draw(hitbox);
 }
 
 void Player::init()
 {
-	body.setFillColor(sf::Color::Green);
+	body.setTexture(bodyTexture);
 	body.setPosition(400, 400);
-	body.setOrigin(40, 20);
+	body.setOrigin(64, 64);
+
+	hitbox.setSize(sf::Vector2f(64, 64));
+	hitbox.setOrigin(32, 32);
+	hitbox.setFillColor(sf::Color::Transparent);
+	hitbox.setOutlineColor(sf::Color::White);
+	hitbox.setOutlineThickness(2.f);
 }
 
 void Player::handleKeyInput()
@@ -58,6 +66,7 @@ void Player::move(double dt)
 	newpos.y = body.getPosition().y + std::sin(m_rotation * Utility::DEG_TO_RADIAN) * m_speed * (dt / 1000);
 
 	body.setPosition(newpos);
+	hitbox.setPosition(body.getPosition());
 }
 
 void Player::increaseSpeed()

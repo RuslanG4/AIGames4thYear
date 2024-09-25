@@ -28,3 +28,15 @@ void VisionCone::setVisionConeRotation(float angle)
 {
 	visionConeShape.setRotation(angle);
 }
+
+void VisionCone::detectPlayer(sf::RectangleShape playerSprite)
+{
+	if(playerSprite.getGlobalBounds().intersects(visionConeShape.getGlobalBounds()))
+	{
+		visionConeShape.setFillColor(sf::Color(0, 255, 0, 120));
+	}
+	else
+	{
+		visionConeShape.setFillColor(sf::Color(255, 0, 0, 120));
+	}
+}

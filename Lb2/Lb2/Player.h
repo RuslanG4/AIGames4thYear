@@ -8,11 +8,13 @@
 class Player
 {
 public:
-	Player();
+	Player(sf::Texture& texture);
 	~Player() {};
 	void update(double dt);
 	void render(sf::RenderWindow& window);
 	void init();
+
+	sf::RectangleShape getSprite() const { return hitbox; };
 
 	void handleKeyInput();
 	void move(double dt);
@@ -24,7 +26,10 @@ public:
 
 	void boundary();
 private:
-	sf::RectangleShape body{sf::Vector2f(80.f,40.f)};
+	sf::Sprite body;
+	sf::Texture bodyTexture;
+
+	sf::RectangleShape hitbox;
 
 	double m_speed{ 0.0 };
 	double m_rotation{ 0.0 };

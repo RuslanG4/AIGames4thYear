@@ -15,11 +15,4 @@ namespace Utility
 
 };
 
-enum AITypes
-{
-	Wander,
-	Seek,
-	Arrive,
-	Pursue
-};
 

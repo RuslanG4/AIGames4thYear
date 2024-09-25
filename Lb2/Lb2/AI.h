@@ -7,13 +7,24 @@
 #include "Constants.h"
 #include"VisionCone.h"
 #include<random>
+#include"Player.h"
+
+enum AITypes
+{
+	Wander,
+	Seek,
+	Arrive,
+	Pursue
+};
 
 class AI
 {
 public:
-	AI(sf::Vector2f position, const sf::Texture & texture);
-	virtual void update(double dt);
+	AI(AITypes type,sf::Vector2f position, const sf::Texture & texture);
+	virtual void update(double dt, Player* player);
 	void render(sf::RenderWindow& window);
+	AITypes getType() { return currentType; };
+	void setActive() { isActive = !isActive; };
 
 protected:
 	sf::Vector2f getAheadVector() const { return m_ahead; };
@@ -41,7 +52,11 @@ protected:
 	}
 	float getRotation() { return m_rotation - 90; };
 
+	bool isActive{ true };
+
 private:
+	AITypes currentType;
+
 	VisionCone* visionCone;
 	sf::Texture bodyTexture;
 	sf::Sprite body;

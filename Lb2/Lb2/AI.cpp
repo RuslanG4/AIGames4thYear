@@ -1,6 +1,6 @@
 #include "AI.h"
 
-AI::AI(sf::Vector2f position, const sf::Texture& texture) : bodyTexture(texture)
+AI::AI(AITypes type, sf::Vector2f position, const sf::Texture& texture) : bodyTexture(texture)
 {
 	visionCone = new VisionCone(position);
 
@@ -9,15 +9,20 @@ AI::AI(sf::Vector2f position, const sf::Texture& texture) : bodyTexture(texture)
 	body.setScale(2, 2);
 	body.setPosition(position);
 
+	currentType = type;
+
 }
 
-void AI::update(double dt)
+void AI::update(double dt, Player* player)
 {
-	visionCone->updateVisionCone(body.getPosition());
-	visionCone->setVisionConeRotation(m_rotation);
-	points();
-	calculateAheadVector();
-	boundary();
+	if (isActive) {
+		visionCone->updateVisionCone(body.getPosition());
+		visionCone->setVisionConeRotation(m_rotation);
+		visionCone->detectPlayer(player->getSprite());
+		points();
+		calculateAheadVector();
+		boundary();
+	}
 }
 
 void AI::render(sf::RenderWindow& window)

@@ -5,10 +5,10 @@
 class WanderAI : public AI
 {
 public:
-	WanderAI(const sf::Texture& texture, sf::Vector2f t_position);
+	WanderAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position);
 	virtual ~WanderAI() {};
 
-	void update(double dt) override;
+	void update(double dt, Player*player) override;
 
 private:
 	void move(double dt);

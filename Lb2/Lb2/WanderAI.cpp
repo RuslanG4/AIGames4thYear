@@ -1,16 +1,17 @@
 #include "WanderAI.h"
 
-WanderAI::WanderAI(const sf::Texture& texture, sf::Vector2f t_position) : AI(t_position, texture)
+
+WanderAI::WanderAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position) : AI(type, t_position, texture)
 {
-	velocity.x = static_cast<float>((std::rand() % 100 - 50) / 10.0);
-	velocity.y = static_cast<float>((std::rand() % 100 - 50) / 10.0);
 }
 
-void WanderAI::update(double dt)
+void WanderAI::update(double dt, Player* player)
 {
-	AI::update(dt);
-	move(dt);
-	handleRandomDirection();
+	if (isActive) {
+		AI::update(dt, player);
+		move(dt);
+		handleRandomDirection();
+	}
 }
 
 void WanderAI::move(double dt)

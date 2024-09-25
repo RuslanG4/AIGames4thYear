@@ -7,6 +7,7 @@ public:
 	void updateVisionCone(sf::Vector2f position);
 	void renderVisionCone(sf::RenderWindow& window);
 	void setVisionConeRotation(float angle);
+	void detectPlayer(sf::RectangleShape playerSprite);
 private:
 	sf::ConvexShape visionConeShape;
 };

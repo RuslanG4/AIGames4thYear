@@ -61,6 +61,10 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+		if(sf::Event::KeyReleased == newEvent.type)
+		{
+			processKeys(newEvent);
+		}
 	}
 }
 
@@ -71,7 +75,7 @@ void Game::processEvents()
 /// <param name="t_event">key press event</param>
 void Game::processKeys(sf::Event t_event)
 {
-
+	editAIState();
 }
 
 /// <summary>
@@ -80,10 +84,10 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	player.update(t_deltaTime.asMilliseconds());
+	player->update(t_deltaTime.asMilliseconds());
 	for (auto enemy : enemies)
 	{
-		enemy->update(t_deltaTime.asMilliseconds());
+		enemy->update(t_deltaTime.asMilliseconds(), player);
 	}
 }
 
@@ -93,7 +97,7 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-	player.render(m_window);
+	player->render(m_window);
 	for(auto enemy : enemies)
 	{
 		enemy->render((m_window));
@@ -107,9 +111,29 @@ void Game::initialise()
 	{
 		std::cout << "Error loading fighter ship texture";
 	}
+	if (!playerTexture.loadFromFile(PLAYER_SHIP))
+	{
+		std::cout << "Error loading player ship texture";
+	}
 
-	enemies.push_back(new PursueAI(fighterShipTexture, sf::Vector2f(600, 600)));
+	player = new Player(playerTexture);
 
-	enemies.push_back(new WanderAI(fighterShipTexture, sf::Vector2f(800, 600)));
+	//enemies.push_back(new PursueAI(fighterShipTexture, sf::Vector2f(600, 600)));
 
+	enemies.push_back(new WanderAI(AITypes::Wander,fighterShipTexture, sf::Vector2f(800, 600)));
+
+}
+
+void Game::editAIState()
+{
+	if(sf::Keyboard::isKeyPressed((sf::Keyboard::Num1)))
+	{
+		for(auto enemy : enemies)
+		{
+			if(enemy->getType() == AITypes::Wander)
+			{
+				enemy->setActive();
+			}
+		}
+	}
 }

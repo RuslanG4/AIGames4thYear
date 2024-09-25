@@ -29,13 +29,15 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	void initialise();
+	void editAIState();
 
 	sf::RenderWindow m_window; // main SFML window
 
 	std::vector<AI*> enemies;
-	Player player;
+	Player* player;
 
 	sf::Texture fighterShipTexture;
+	sf::Texture playerTexture;
 };
 
 #endif // !GAME_HPP

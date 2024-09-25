@@ -5,7 +5,7 @@
 class PursueAI : public AI
 {
 public:
-	PursueAI(const sf::Texture & texture, sf::Vector2f t_position);
+	PursueAI(AITypes type, sf::Texture & texture, sf::Vector2f t_position);
 	virtual ~PursueAI() {};
 
 private:

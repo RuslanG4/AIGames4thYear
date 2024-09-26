@@ -25,7 +25,7 @@ void Player::update(double dt)
 void Player::render(sf::RenderWindow& window)
 {
 	window.draw(body);
-	window.draw(hitbox);
+	//window.draw(hitbox);
 	//window.draw(shape);
 }
 

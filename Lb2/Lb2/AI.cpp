@@ -63,7 +63,7 @@ void AI::render(sf::RenderWindow& window)
 
 void AI::calculateAheadVector()
 {
-	auto headingRadians = (m_rotation - 90) * Utility::DEG_TO_RADIAN;
+	auto headingRadians = (m_rotation) * Utility::DEG_TO_RADIAN;
 	sf::Vector2f headingVector(std::cos(headingRadians) * 200, std::sin(headingRadians) * 200);
 	m_ahead = body.getPosition() + headingVector;
 }

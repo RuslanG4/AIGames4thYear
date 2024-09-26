@@ -5,9 +5,9 @@ VisionCone::VisionCone(sf::Vector2f position)
 	visionConeShape.setPointCount(4);
 
 	visionConeShape.setPoint(0, position);
-	visionConeShape.setPoint(1, sf::Vector2f(position.x - 50, position.y - 200));
-	visionConeShape.setPoint(2, sf::Vector2f(position.x, position.y - 200));
-	visionConeShape.setPoint(3, sf::Vector2f(position.x + 50, position.y - 200));
+	visionConeShape.setPoint(1, sf::Vector2f(position.x + 200, position.y - 50));
+	visionConeShape.setPoint(2, sf::Vector2f(position.x + 200, position.y));
+	visionConeShape.setPoint(3, sf::Vector2f(position.x + 200, position.y + 50));
 
 	visionConeShape.setOrigin(position);
 

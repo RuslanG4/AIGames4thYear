@@ -38,7 +38,7 @@ void WanderAI::handleRandomDirection()
 {
 	if(changeWanderTimer.getElapsedTime().asSeconds() > 3.f)
 	{
-		randomAngle =  std::rand() % 181 - 90;
+		randomAngle =  std::rand() % 181;
 		changeWanderTimer.restart();
 	}
 }

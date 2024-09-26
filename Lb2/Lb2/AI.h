@@ -36,7 +36,7 @@ protected:
 	}
 	void setRotation(float angle)
 	{
-		float temp = angle - 90;
+		float temp = angle;
 		if(m_rotation < temp)
 		{
 			m_rotation++;
@@ -58,7 +58,7 @@ protected:
 		m_rotation = angle;
 		body.setRotation(angle);
 	}
-	float getRotation() { return m_rotation - 90; };
+	float getRotation() { return m_rotation; };
 
 	bool isActive{ false };
 

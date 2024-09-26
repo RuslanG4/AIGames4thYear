@@ -29,7 +29,14 @@ AI::AI(AITypes type, sf::Vector2f position, const sf::Texture& texture) : bodyTe
 	case AITypes::Seek:
 		shipText.setString("Seek");
 		break;
+	case AITypes::SlowArrive:
+		shipText.setString("Slow Arrive");
+		break;
+	case AITypes::FastArrive:
+		shipText.setString("Fast Arrive");
+		break;
 	}
+	shipText.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 40));
 
 }
 

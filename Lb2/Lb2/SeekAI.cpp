@@ -14,13 +14,9 @@ void SeekAI::update(double dt, Player* player)
 
 void SeekAI::move(double dt, Player* player)
 {
-	target = player->getSprite().getPosition() - AI::getSprite().getPosition();
+	target = AI::getSprite().getPosition() - player->getSprite().getPosition();
 
-	float timeToReach = Utility::magnitude(target.x, target.y) / maxSpeed;
-	std::cout << Utility::magnitude(target.x, target.y) << "\n";
-	sf::Vector2f predictedPosition = player->getSprite().getPosition() + Utility::unitVector2D(player->getVelocity()) * timeToReach;
-
-	m_steering += Utility::unitVector2D(predictedPosition);
+	m_steering += Utility::unitVector2D(target);
 	m_steering = Utility::truncate(m_steering, 20.f);
 	acceleration = m_steering / 5.f;
 
@@ -34,5 +30,27 @@ void SeekAI::move(double dt, Player* player)
 	auto dest = atan2(-1 * velocity.y, -1 * velocity.x) / Utility::PI * 180 + 180;
 
 	AI::setPosition(newPos);
-	AI::setPursueRotation(dest);
+	handleRotation(dt, velocity, dest);
+
+	
 }
+
+void SeekAI::handleRotation(double dt, sf::Vector2f velocity, float CurrAngle)
+{
+	auto currentRotation = getRotation();
+	int newRotation;
+
+	if ((static_cast<int>(std::round(CurrAngle - currentRotation + 360))) % 360 > 180)
+	{
+		// rotate clockwise
+		newRotation = static_cast<int>(getRotation()+1) % 360;
+	}
+	else
+	{
+		// rotate anti-clockwise
+		newRotation = static_cast<int>(getRotation() -1) % 360;
+	}
+
+	setPursueRotation(newRotation + 90);
+}
+

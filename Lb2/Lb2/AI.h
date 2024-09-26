@@ -13,7 +13,8 @@ enum AITypes
 {
 	Wander,
 	Seek,
-	Arrive,
+	SlowArrive,
+	FastArrive,
 	Pursue
 };
 
@@ -54,12 +55,12 @@ protected:
 
 	void setPursueRotation(float angle)
 	{
-		m_rotation = angle - 90;
-		body.setRotation(m_rotation);
+		m_rotation = angle;
+		body.setRotation(angle);
 	}
 	float getRotation() { return m_rotation - 90; };
 
-	bool isActive{ true };
+	bool isActive{ false };
 
 private:
 	AITypes currentType;

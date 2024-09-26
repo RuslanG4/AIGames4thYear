@@ -102,6 +102,7 @@ void Game::render()
 	{
 		enemy->render((m_window));
 	}
+	m_window.draw(text);
 	m_window.display();
 }
 
@@ -115,14 +116,25 @@ void Game::initialise()
 	{
 		std::cout << "Error loading player ship texture";
 	}
+	if(!font.loadFromFile(FONT))
+	{
+		std::cout << "error loading font";
+	}
+	text.setFont(font);
+	text.setFillColor(sf::Color::White);
+	text.setString("1 : Wander        2 : Pursue          3 : Seek          4 : Slow Arrive          5 : Fast Arrive");
 
 	player = new Player(playerTexture);
 
-	//enemies.push_back(new PursueAI(AITypes::Pursue, fighterShipTexture, sf::Vector2f(600, 600)));
+	enemies.push_back(new PursueAI(AITypes::Pursue, fighterShipTexture, sf::Vector2f(600, 600)));
 
-	//enemies.push_back(new WanderAI(AITypes::Wander,fighterShipTexture, sf::Vector2f(800, 600)));
+	enemies.push_back(new WanderAI(AITypes::Wander,fighterShipTexture, sf::Vector2f(800, 600)));
 
 	enemies.push_back(new SeekAI(AITypes::Seek, fighterShipTexture, sf::Vector2f(1000, 800)));
+
+	enemies.push_back(new ArriveAI(AITypes::FastArrive, fighterShipTexture, sf::Vector2f(1200, 600), 350.f));
+
+	enemies.push_back(new ArriveAI(AITypes::SlowArrive, fighterShipTexture, sf::Vector2f(1000, 200), 150.f));
 
 }
 
@@ -153,6 +165,26 @@ void Game::editAIState()
 		for (auto enemy : enemies)
 		{
 			if (enemy->getType() == AITypes::Seek)
+			{
+				enemy->setActive();
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Num4)))
+	{
+		for (auto enemy : enemies)
+		{
+			if (enemy->getType() == AITypes::SlowArrive)
+			{
+				enemy->setActive();
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Num5)))
+	{
+		for (auto enemy : enemies)
+		{
+			if (enemy->getType() == AITypes::FastArrive)
 			{
 				enemy->setActive();
 			}

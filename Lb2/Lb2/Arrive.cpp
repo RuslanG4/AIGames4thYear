@@ -1,10 +1,12 @@
-#include "PursueAI.h"
+#include "Arrive.h"
 
-PursueAI::PursueAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position) : AI(type,t_position,texture)
+ArriveAI::ArriveAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position, float maxSpeedVal) : AI(type, t_position, texture)
 {
+	originalMaxSpeed = maxSpeedVal;
+	maxSpeed = originalMaxSpeed;
 }
 
-void PursueAI::update(double dt, Player* player)
+void ArriveAI::update(double dt, Player* player)
 {
 	if (isActive) {
 		AI::update(dt, player);
@@ -12,41 +14,33 @@ void PursueAI::update(double dt, Player* player)
 	}
 }
 
-void PursueAI::move(double dt, Player* player)
+void ArriveAI::move(double dt, Player* player)
 {
-	target = player->getSprite().getPosition() - AI::getSprite().getPosition();
+	target = AI::getSprite().getPosition() - player->getSprite().getPosition();
 
-	float timeToReach = Utility::magnitude(target.x, target.y) / maxSpeed;
-	sf::Vector2f playerVel;
-
-	if(Utility::magnitude(player->getVelocity().x , player->getVelocity().y) <= 0)
+	if (Utility::magnitude(target.x, target.y) < 200.f)
 	{
-		playerVel = sf::Vector2f(0,0);
-	}
-	else
-	{
-		playerVel = Utility::unitVector2D(player->getVelocity());
-	}
-
-	sf::Vector2f predictedPosition = player->getSprite().getPosition() + playerVel * timeToReach * maxSpeed;
-	sf::Vector2f desiredPath =AI::getSprite().getPosition() - predictedPosition;
-
-	if (Utility::magnitude(desiredPath.x, desiredPath.y) < 200.f)
-	{
-		maxSpeed = maxSpeed * 0.985;
+		if (originalMaxSpeed < 250) {
+			maxSpeed = maxSpeed * 0.985;
+		}
+		else {
+			maxSpeed = maxSpeed * 0.9;
+		}
 	}
 	else
 	{
 		maxSpeed = originalMaxSpeed;
 	}
 
-	m_steering += Utility::unitVector2D(desiredPath);
+	m_steering += Utility::unitVector2D(target);
 	m_steering = Utility::truncate(m_steering, 20.f);
 	acceleration = m_steering / 5.f;
 
 	velocity = Utility::truncate(velocity + acceleration, maxSpeed);
 
 	double speed = Utility::magnitude(velocity.x, velocity.y);
+
+	std::cout << Utility::magnitude(target.x, target.y)<<"\n";
 
 	sf::Vector2f newPos(AI::getSprite().getPosition().x + std::cos(Utility::DEG_TO_RADIAN * AI::getRotation()) * speed * (dt / 1000),
 		AI::getSprite().getPosition().y + std::sin(Utility::DEG_TO_RADIAN * AI::getRotation()) * speed * (dt / 1000));
@@ -55,10 +49,11 @@ void PursueAI::move(double dt, Player* player)
 
 	AI::setPosition(newPos);
 	handleRotation(dt, velocity, dest);
+	//AI::setPursueRotation(dest);
 
 }
 
-void PursueAI::handleRotation(double dt, sf::Vector2f velocity, float CurrAngle)
+void ArriveAI::handleRotation(double dt, sf::Vector2f velocity, float CurrAngle)
 {
 	auto currentRotation = getRotation();
 	int newRotation;
@@ -76,3 +71,5 @@ void PursueAI::handleRotation(double dt, sf::Vector2f velocity, float CurrAngle)
 
 	setPursueRotation(newRotation + 90);
 }
+
+

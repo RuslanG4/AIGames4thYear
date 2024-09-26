@@ -26,7 +26,8 @@ public:
 
 	void boundary();
 
-	sf::Vector2f getVelocity() { return newpos; };
+	sf::Vector2f getVelocity() { return vel; };
+	sf::Vector2f getPredictedLocation() { return shape.getPosition(); };
 private:
 	sf::Sprite body;
 	sf::Texture bodyTexture;
@@ -36,10 +37,13 @@ private:
 	double m_speed{ 0.0 };
 	double m_rotation{ 0.0 };
 
+	sf::Vector2f vel;
 	sf::Vector2f newpos;
 	sf::Vector2f m_previousPosition;
 
-	const double MAX_REVERSE_SPEED = -300; //for movement
-	const double MAX_FORWARD_SPEED = 300;
+	const double MAX_REVERSE_SPEED = -200; //for movement
+	const double MAX_FORWARD_SPEED = 200;
+
+	sf::CircleShape shape;
 };
 

@@ -10,6 +10,7 @@
 #include"PursueAI.h"
 #include"WanderAI.h"
 #include"SeekAI.h"
+#include"Arrive.h"
 #include <filesystem>
 
 
@@ -37,6 +38,8 @@ private:
 	std::vector<AI*> enemies;
 	Player* player;
 
+	sf::Font font;
+	sf::Text text;
 	sf::Texture fighterShipTexture;
 	sf::Texture playerTexture;
 };

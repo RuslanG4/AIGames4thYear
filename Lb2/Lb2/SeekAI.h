@@ -10,6 +10,7 @@ public:
 
 private:
 	void move(double dt, Player* player);
+	void handleRotation(double dt, sf::Vector2f velocity, float CurrAngle);
 
 	sf::Vector2f velocity;
 	float maxSpeed{ 180.f };
@@ -18,5 +19,6 @@ private:
 	sf::Vector2f acceleration;
 
 	sf::Vector2f target;
+
 };
 

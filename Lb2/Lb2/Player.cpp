@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <iostream>
+
 Player::Player(sf::Texture& texture)
 {
 	bodyTexture = texture;
@@ -24,6 +26,7 @@ void Player::render(sf::RenderWindow& window)
 {
 	window.draw(body);
 	window.draw(hitbox);
+	//window.draw(shape);
 }
 
 void Player::init()
@@ -37,6 +40,11 @@ void Player::init()
 	hitbox.setFillColor(sf::Color::Transparent);
 	hitbox.setOutlineColor(sf::Color::White);
 	hitbox.setOutlineThickness(2.f);
+
+	shape.setRadius(15.f);
+	shape.setFillColor(sf::Color::Yellow);
+	shape.setPosition(100,100);
+	shape.setOrigin(15, 15);
 }
 
 void Player::handleKeyInput()
@@ -62,11 +70,17 @@ void Player::handleKeyInput()
 
 void Player::move(double dt)
 {
-	newpos.x = body.getPosition().x + std::cos(m_rotation * Utility::DEG_TO_RADIAN) * m_speed * (dt / 1000);
-	newpos.y = body.getPosition().y + std::sin(m_rotation * Utility::DEG_TO_RADIAN) * m_speed * (dt / 1000);
+	
+	vel.x = std::cos(m_rotation * Utility::DEG_TO_RADIAN) * m_speed * (dt / 1000);
+	vel.y = std::sin(m_rotation * Utility::DEG_TO_RADIAN) * m_speed * (dt / 1000);
+
+	newpos.x = body.getPosition().x + vel.x;
+	newpos.y = body.getPosition().y + vel.y;
 
 	body.setPosition(newpos);
 	hitbox.setPosition(body.getPosition());
+
+	//shape.setPosition(body.getPosition() + vel * 230.f);
 }
 
 void Player::increaseSpeed()

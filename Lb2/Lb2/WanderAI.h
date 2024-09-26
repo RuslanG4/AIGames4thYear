@@ -16,6 +16,7 @@ private:
 
 	float randomAngle = std::rand() % 181 - 90;
 	sf::Vector2f velocity;
+	float maxSpeed{ 80.f };
 
 	sf::Vector2f m_steering;
 	sf::Vector2f acceleration;

@@ -9,6 +9,7 @@
 #include "AI.h"
 #include"PursueAI.h"
 #include"WanderAI.h"
+#include"SeekAI.h"
 #include <filesystem>
 
 

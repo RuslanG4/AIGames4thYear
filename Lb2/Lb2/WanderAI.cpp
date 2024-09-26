@@ -22,7 +22,7 @@ void WanderAI::move(double dt)
 	m_steering = Utility::truncate(m_steering, 10.f);
 	acceleration = m_steering / 5.f;
 
-	velocity = Utility::truncate(velocity + acceleration, 50.f);
+	velocity = Utility::truncate(velocity + acceleration, maxSpeed);
 
 	double speed = Utility::magnitude(velocity.x, velocity.y);
 

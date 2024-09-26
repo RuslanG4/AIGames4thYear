@@ -46,8 +46,15 @@ protected:
 		}
 		if (m_rotation == temp)
 		{
-			
+			m_rotation = temp;
 		}
+
+		body.setRotation(m_rotation);
+	}
+
+	void setPursueRotation(float angle)
+	{
+		m_rotation = angle - 90;
 		body.setRotation(m_rotation);
 	}
 	float getRotation() { return m_rotation - 90; };
@@ -56,6 +63,9 @@ protected:
 
 private:
 	AITypes currentType;
+
+	sf::Font font;
+	sf::Text shipText;
 
 	VisionCone* visionCone;
 	sf::Texture bodyTexture;

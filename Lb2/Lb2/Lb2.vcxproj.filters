@@ -51,6 +51,9 @@
     <ClCompile Include="WanderAI.cpp">
       <Filter>Source Files\EnemyAI</Filter>
     </ClCompile>
+    <ClCompile Include="SeekAI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="WanderAI.h">
       <Filter>Header Files\EnemyAI</Filter>
+    </ClInclude>
+    <ClInclude Include="SeekAI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -118,9 +118,11 @@ void Game::initialise()
 
 	player = new Player(playerTexture);
 
-	//enemies.push_back(new PursueAI(fighterShipTexture, sf::Vector2f(600, 600)));
+	//enemies.push_back(new PursueAI(AITypes::Pursue, fighterShipTexture, sf::Vector2f(600, 600)));
 
-	enemies.push_back(new WanderAI(AITypes::Wander,fighterShipTexture, sf::Vector2f(800, 600)));
+	//enemies.push_back(new WanderAI(AITypes::Wander,fighterShipTexture, sf::Vector2f(800, 600)));
+
+	enemies.push_back(new SeekAI(AITypes::Seek, fighterShipTexture, sf::Vector2f(1000, 800)));
 
 }
 
@@ -131,6 +133,26 @@ void Game::editAIState()
 		for(auto enemy : enemies)
 		{
 			if(enemy->getType() == AITypes::Wander)
+			{
+				enemy->setActive();
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Num2)))
+	{
+		for (auto enemy : enemies)
+		{
+			if (enemy->getType() == AITypes::Pursue)
+			{
+				enemy->setActive();
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed((sf::Keyboard::Num3)))
+	{
+		for (auto enemy : enemies)
+		{
+			if (enemy->getType() == AITypes::Seek)
 			{
 				enemy->setActive();
 			}

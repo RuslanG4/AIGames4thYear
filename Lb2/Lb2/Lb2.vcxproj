@@ -146,6 +146,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PursueAI.cpp" />
+    <ClCompile Include="SeekAI.cpp" />
     <ClCompile Include="Utility.cpp" />
     <ClCompile Include="VisionCone.cpp" />
     <ClCompile Include="WanderAI.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PursueAI.h" />
+    <ClInclude Include="SeekAI.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="VisionCone.h" />
     <ClInclude Include="WanderAI.h" />

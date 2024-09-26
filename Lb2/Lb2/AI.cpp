@@ -11,6 +11,26 @@ AI::AI(AITypes type, sf::Vector2f position, const sf::Texture& texture) : bodyTe
 
 	currentType = type;
 
+	if(!font.loadFromFile(FONT))
+	{
+		std::cout << "error loading font";
+	}
+
+	shipText.setFont(font);
+	shipText.setFillColor(sf::Color::White);
+	switch(currentType)
+	{
+	case AITypes::Wander:
+		shipText.setString("Wander");
+		break;
+	case AITypes::Pursue:
+		shipText.setString("Pursue");
+		break;
+	case AITypes::Seek:
+		shipText.setString("Seek");
+		break;
+	}
+
 }
 
 void AI::update(double dt, Player* player)
@@ -22,6 +42,7 @@ void AI::update(double dt, Player* player)
 		points();
 		calculateAheadVector();
 		boundary();
+		shipText.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 40));
 	}
 }
 
@@ -30,6 +51,7 @@ void AI::render(sf::RenderWindow& window)
 	window.draw(body);
 	window.draw(m_points);
 	visionCone->renderVisionCone(window);
+	window.draw(shipText);
 }
 
 void AI::calculateAheadVector()

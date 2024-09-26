@@ -1,22 +1,26 @@
-#include "PursueAI.h"
+#include "SeekAI.h"
 
-PursueAI::PursueAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position) : AI(type,t_position,texture)
+SeekAI::SeekAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position) : AI(type, t_position, texture)
 {
 }
 
-void PursueAI::update(double dt, Player* player)
+void SeekAI::update(double dt, Player* player)
 {
 	if (isActive) {
 		AI::update(dt, player);
-		move(dt, player->getSprite().getPosition());
+		move(dt, player);
 	}
 }
 
-void PursueAI::move(double dt, sf::Vector2f playerPos)
+void SeekAI::move(double dt, Player* player)
 {
-	target = AI::getSprite().getPosition() - playerPos;
+	target = player->getSprite().getPosition() - AI::getSprite().getPosition();
 
-	m_steering += Utility::unitVector2D(target);
+	float timeToReach = Utility::magnitude(target.x, target.y) / maxSpeed;
+	std::cout << Utility::magnitude(target.x, target.y) << "\n";
+	sf::Vector2f predictedPosition = player->getSprite().getPosition() + Utility::unitVector2D(player->getVelocity()) * timeToReach;
+
+	m_steering += Utility::unitVector2D(predictedPosition);
 	m_steering = Utility::truncate(m_steering, 20.f);
 	acceleration = m_steering / 5.f;
 
@@ -31,5 +35,4 @@ void PursueAI::move(double dt, sf::Vector2f playerPos)
 
 	AI::setPosition(newPos);
 	AI::setPursueRotation(dest);
-
 }

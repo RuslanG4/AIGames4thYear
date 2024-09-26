@@ -25,6 +25,8 @@ public:
 	void decreaseRotation();
 
 	void boundary();
+
+	sf::Vector2f getVelocity() { return newpos; };
 private:
 	sf::Sprite body;
 	sf::Texture bodyTexture;

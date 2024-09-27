@@ -42,7 +42,7 @@ void PursueAI::move(double dt, Player* player)
 
 	m_steering += Utility::unitVector2D(desiredPath);
 	m_steering = Utility::truncate(m_steering, 20.f);
-	acceleration = m_steering / 5.f;
+	acceleration = m_steering / 1.f;
 
 	velocity = Utility::truncate(velocity + acceleration, maxSpeed);
 

@@ -37,7 +37,7 @@ AI::AI(AITypes type, sf::Vector2f position, const sf::Texture& texture) : bodyTe
 		break;
 	}
 	shipText.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 40));
-
+	visionCone->updateVisionCone(body.getPosition());
 }
 
 void AI::update(double dt, Player* player)

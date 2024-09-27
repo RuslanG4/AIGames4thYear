@@ -7,8 +7,9 @@ WanderAI::WanderAI(AITypes type, sf::Texture& texture, sf::Vector2f t_position) 
 
 void WanderAI::update(double dt, Player* player)
 {
+	AI::update(dt, player);
 	if (isActive) {
-		AI::update(dt, player);
+		
 		move(dt);
 		handleRandomDirection();
 	}

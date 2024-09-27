@@ -27,3 +27,8 @@ sf::Vector2f Utility::truncate(sf::Vector2f v, float const max)
 
 	return v;
 }
+
+float Utility::dotProduct(sf::Vector2f v1, sf::Vector2f v2)
+{
+	return (v1.x * v2.x) + (v1.y * v2.y);
+}

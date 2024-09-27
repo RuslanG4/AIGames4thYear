@@ -42,15 +42,15 @@ AI::AI(AITypes type, sf::Vector2f position, const sf::Texture& texture) : bodyTe
 
 void AI::update(double dt, Player* player)
 {
-	if (isActive) {
+	//if (isActive) {
 		visionCone->updateVisionCone(body.getPosition());
 		visionCone->setVisionConeRotation(m_rotation);
-		visionCone->detectPlayer(player->getSprite());
 		points();
 		calculateAheadVector();
+		visionCone->detectPlayer(player->getSprite().getPosition(), body.getPosition(), headingVector);
 		boundary();
 		shipText.setPosition(sf::Vector2f(body.getPosition().x, body.getPosition().y + 40));
-	}
+	//}
 }
 
 void AI::render(sf::RenderWindow& window)
@@ -64,7 +64,7 @@ void AI::render(sf::RenderWindow& window)
 void AI::calculateAheadVector()
 {
 	auto headingRadians = (m_rotation) * Utility::DEG_TO_RADIAN;
-	sf::Vector2f headingVector(std::cos(headingRadians) * 200, std::sin(headingRadians) * 200);
+	headingVector = sf::Vector2f(std::cos(headingRadians) * 200, std::sin(headingRadians) * 200);
 	m_ahead = body.getPosition() + headingVector;
 }
 

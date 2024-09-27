@@ -12,6 +12,8 @@ namespace Utility
 
 	sf::Vector2f truncate(sf::Vector2f v, float const max);
 
+	float dotProduct(sf::Vector2f v1, sf::Vector2f v2);
+
 
 };
 

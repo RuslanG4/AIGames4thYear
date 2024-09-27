@@ -77,6 +77,7 @@ private:
 
 	// The ahead vector.
 	sf::Vector2f m_ahead;
+	sf::Vector2f headingVector;
 
 	float m_rotation{0.0};
 

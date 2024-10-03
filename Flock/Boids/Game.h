@@ -45,7 +45,7 @@ private:
 	string action = "flock";
 	bool close = false;
 
-	int maxFlock = 20;
+	int maxFlock = 200;
 
 	//Create flock, vector of shapes, and initialize boids
 	Flock flock;

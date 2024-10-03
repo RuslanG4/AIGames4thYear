@@ -256,12 +256,12 @@ void Boid::swarm(vector <Boid>& v)
 	// Your code here..
 
 	//a and b are constants for a particular molicule
-	// formula is total = A/R^6 - B/R^12
+	// formula is total = A/R^12 - B/R^6
 	//B is repulsion , A is attraction
 	int A = 100;
-	int B = 600;
+	int B = 1200;
 
-	float attractionDistance=50.f;
+	float attractionDistance = 65.f; // bit heigher than neighbour distance to give room to breathe
 	/*float strength = 10.f;*/
 
 	for (int i = 0; i < v.size(); i++)
@@ -283,6 +283,7 @@ void Boid::swarm(vector <Boid>& v)
 
 	}
 
+	sum.divScalar(v.size() - 1);
 	applyForce(sum);
 	update();
 	borders();
